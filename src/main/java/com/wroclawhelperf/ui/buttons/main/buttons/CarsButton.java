@@ -5,23 +5,16 @@ import com.wroclawhelperf.ui.views.Dashboard;
 
 public final class CarsButton extends MainButtonAbstract {
 
-    private final Dashboard dashboard = Dashboard.getInstance();
-    private static CarsButton carsButtonInstance = null;
+    private final Dashboard dashboard;
 
-    public static CarsButton getInstance() {
-        if (carsButtonInstance == null) {
-            carsButtonInstance = new CarsButton();
-        }
-        return carsButtonInstance;
-    }
-
-    private CarsButton() {
+    public CarsButton(Dashboard dashboard) {
         super();
+        this.dashboard = dashboard;
         setText("CARS");
 
         addClickListener(e -> {
-            dashboard.reset();
-            dashboard.getHeading().setText("CARS");
+            this.dashboard.reset();
+            this.dashboard.getHeading().setText("CARS");
         });
     }
 }

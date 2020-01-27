@@ -3,9 +3,9 @@ package com.wroclawhelperf.ui.buttons;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 
-public abstract class SecondLevelButtonLayout extends Button {
+public abstract class SecondaryButtonAbstract extends Button {
 
-    public SecondLevelButtonLayout() {
+    public SecondaryButtonAbstract() {
         addThemeVariants(ButtonVariant.LUMO_SMALL);
     }
 }

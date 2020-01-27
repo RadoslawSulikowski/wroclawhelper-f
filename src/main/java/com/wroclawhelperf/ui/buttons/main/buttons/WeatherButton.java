@@ -5,22 +5,15 @@ import com.wroclawhelperf.ui.views.Dashboard;
 
 public final class WeatherButton extends MainButtonAbstract {
 
-    private static WeatherButton weatherButtonInstance = null;
-    private final Dashboard dashboard = Dashboard.getInstance();
+    private final Dashboard dashboard;
 
-    public static WeatherButton getInstance() {
-        if (weatherButtonInstance == null) {
-            weatherButtonInstance = new WeatherButton();
-        }
-        return weatherButtonInstance;
-    }
-
-    private WeatherButton() {
+    public WeatherButton(Dashboard dashboard) {
         super();
+        this.dashboard = dashboard;
         setText("WEATHER");
         addClickListener(e -> {
-            dashboard.reset();
-            dashboard.getHeading().setText("WEATHER");
+            this.dashboard.reset();
+            this.dashboard.getHeading().setText("WEATHER");
         });
     }
 }

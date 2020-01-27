@@ -9,8 +9,4 @@ public abstract class MainButtonAbstract extends Button {
     public MainButtonAbstract() {
         addThemeVariants(ButtonVariant.LUMO_CONTRAST);
     }
-
-    public MainButtonAbstract(MainView mainView) {
-        addThemeVariants(ButtonVariant.LUMO_CONTRAST);
-    }
 }

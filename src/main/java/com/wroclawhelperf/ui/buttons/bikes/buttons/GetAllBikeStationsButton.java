@@ -2,40 +2,41 @@ package com.wroclawhelperf.ui.buttons.bikes.buttons;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.html.Label;
 import com.wroclawhelperf.domain.BikeStation;
 import com.wroclawhelperf.service.BikeService;
-import com.wroclawhelperf.ui.buttons.SecondLevelButtonLayout;
+import com.wroclawhelperf.ui.buttons.SecondaryButtonAbstract;
 import com.wroclawhelperf.ui.views.BikeStationsView;
 
-public class GetAllBikeStationsButton extends SecondLevelButtonLayout {
+public class GetAllBikeStationsButton extends SecondaryButtonAbstract {
 
     private final BikeService service = BikeService.getInstance();
-    private final BikeStationsView bikeStationsView = BikeStationsView.getInstance();
-    private static GetAllBikeStationsButton getAllBikeStationsButtonInstance = null;
+    private final BikeStationsView bikeStationsView;
 
-    public static GetAllBikeStationsButton getInstance() {
-        if (getAllBikeStationsButtonInstance == null) {
-            getAllBikeStationsButtonInstance = new GetAllBikeStationsButton();
-        }
-        return getAllBikeStationsButtonInstance;
-    }
-
-    private GetAllBikeStationsButton() {
+    public GetAllBikeStationsButton(BikeStationsView bikeStationsView) {
         super();
+        this.bikeStationsView = bikeStationsView;
         setText("ALL STATIONS");
         addClickListener(e -> {
-            bikeStationsView.removeAll();
+            this.bikeStationsView.removeAll();
+
             Grid<BikeStation> bikeGrid = new Grid<>(BikeStation.class);
-            bikeGrid.setColumns("name", "bikes", "bookedBikes");
-            bikeGrid.setItems(service.getAllBikeStations());
-            bikeGrid.addComponentColumn(bikeStation -> {
+            Label stationName = new Label();
+            Grid<BikeStation> bikeStationGrid = new Grid<>(BikeStation.class);
+
+            bikeStationGrid.setColumns("name", "bikes", "bookedBikes");
+            bikeGrid.setColumns("uniqueId", "number", "bikeList", "location");
+            bikeGrid.getColumns().forEach(c -> c.setAutoWidth(true));
+            bikeStationGrid.setItems(service.getAllBikeStations());
+            bikeStationGrid.addComponentColumn(bikeStation -> {
                 Button button = new Button("DETAILS");
-                button.addClickListener(click ->
-                        Notification.show("Clicked: " + bikeStation.toString()));
+                button.addClickListener(click -> {
+                    stationName.setText(bikeStation.getName());
+                    bikeGrid.setItems(bikeStation);
+                });
                 return button;
             });
-            bikeStationsView.add(bikeGrid);
+            bikeStationsView.add(bikeStationGrid, stationName, bikeGrid);
         });
     }
 

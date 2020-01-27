@@ -5,23 +5,16 @@ import com.wroclawhelperf.ui.views.Dashboard;
 
 public final class UserPanelButton extends MainButtonAbstract {
 
-    private final Dashboard dashboard = Dashboard.getInstance();
-    private static UserPanelButton userPanelButtonInstance = null;
+    private final Dashboard dashboard;
 
-    public static UserPanelButton getInstance() {
-        if (userPanelButtonInstance == null) {
-            userPanelButtonInstance = new UserPanelButton();
-        }
-        return userPanelButtonInstance;
-    }
-
-    private UserPanelButton() {
+    public UserPanelButton(Dashboard dashboard) {
         super();
+        this.dashboard = dashboard;
         setText("USER PANEL");
 
         addClickListener(e -> {
-            dashboard.reset();
-            dashboard.getHeading().setText("USER PANEL");
+            this.dashboard.reset();
+            this.dashboard.getHeading().setText("USER PANEL");
         });
     }
 }
