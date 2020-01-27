@@ -1,16 +1,15 @@
 package com.wroclawhelperf.ui;
 
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-import com.wroclawhelperf.ui.views.Dashboard;
+import com.wroclawhelperf.ui.buttons.StartButton;
 
 @Route
-public class MainView extends VerticalLayout {
+public class MainView extends HorizontalLayout {
 
-    private Button logIn = new Button("LET'S GET STARTED!");
+    private VerticalLayout leftPanel = new VerticalLayout();
     private Label label = new Label();
 
     public MainView() {
@@ -19,20 +18,17 @@ public class MainView extends VerticalLayout {
 
     private void setContent() {
         label.setText("WELCOME!");
-        logIn.addClickListener(e -> {
-            removeAll();
-            Dashboard.getInstance(this).reset();
-            add(Dashboard.getInstance(this));
-        });
-        HorizontalLayout heading = new HorizontalLayout(label);
-        HorizontalLayout toolbar = new HorizontalLayout(logIn);
-        add(heading, toolbar);
-        setSizeFull();
+        leftPanel.setWidth("10%");
+        leftPanel.add(label, StartButton.getInstance(this));
+        add(leftPanel);
     }
 
     public void reset() {
-        removeAll();
-        setContent();
+        leftPanel.removeAll();
+        leftPanel.add(label, StartButton.getInstance(this));
     }
 
+    public VerticalLayout getLeftPanel() {
+        return leftPanel;
+    }
 }

@@ -1,43 +1,46 @@
 package com.wroclawhelperf.ui.views;
 
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.wroclawhelperf.ui.MainView;
-import com.wroclawhelperf.ui.buttons.main.buttons.*;
 
 public class Dashboard extends VerticalLayout {
 
-    private final MainView mainView;
     private static Dashboard dashboardInstance = null;
+    private Label heading = new Label();
+    private HorizontalLayout secondaryButtonPanel = new HorizontalLayout();
 
-    public static Dashboard getInstance(MainView mainView) {
+
+    public static Dashboard getInstance() {
         if (dashboardInstance == null) {
-            dashboardInstance = new Dashboard(mainView);
+            dashboardInstance = new Dashboard();
         }
         return dashboardInstance;
     }
 
-    private Dashboard(MainView mainView) {
-        this.mainView = mainView;
+    private Dashboard() {
         setContent();
     }
 
     private void setContent() {
-        HorizontalLayout buttonPanel = new HorizontalLayout(
-                UserPanelButton.getInstance(this),
-                BikesButton.getInstance(this),
-                WeatherButton.getInstance(this),
-                CarsButton.getInstance(this),
-                GoodbyeButton.getInstance(this));
-        mainView.add(buttonPanel);
+        heading.setHeight("10%");
+        secondaryButtonPanel.setHeight("10%");
+        add(heading, secondaryButtonPanel);
+
     }
 
     public void reset() {
+        heading.setText("");
+        secondaryButtonPanel.removeAll();
         removeAll();
-        setContent();
+        add(heading, secondaryButtonPanel);
     }
 
-    public MainView getMainView() {
-        return mainView;
+    public Label getHeading() {
+        return heading;
+    }
+
+    public HorizontalLayout getSecondaryButtonPanel() {
+        return secondaryButtonPanel;
     }
 }

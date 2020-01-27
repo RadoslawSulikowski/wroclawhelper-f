@@ -11,19 +11,18 @@ import com.wroclawhelperf.ui.views.BikeStationsView;
 public class GetAllBikeStationsButton extends SecondLevelButtonLayout {
 
     private final BikeService service = BikeService.getInstance();
-    private final BikeStationsView bikeStationsView;
+    private final BikeStationsView bikeStationsView = BikeStationsView.getInstance();
     private static GetAllBikeStationsButton getAllBikeStationsButtonInstance = null;
 
-    public static GetAllBikeStationsButton getInstance(BikeStationsView bikeStationsView) {
+    public static GetAllBikeStationsButton getInstance() {
         if (getAllBikeStationsButtonInstance == null) {
-            getAllBikeStationsButtonInstance = new GetAllBikeStationsButton(bikeStationsView);
+            getAllBikeStationsButtonInstance = new GetAllBikeStationsButton();
         }
         return getAllBikeStationsButtonInstance;
     }
 
-    private GetAllBikeStationsButton(BikeStationsView bikeStationsView) {
+    private GetAllBikeStationsButton() {
         super();
-        this.bikeStationsView = bikeStationsView;
         setText("ALL STATIONS");
         addClickListener(e -> {
             bikeStationsView.removeAll();

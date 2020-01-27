@@ -1,25 +1,29 @@
 package com.wroclawhelperf.ui.buttons.main.buttons;
 
-import com.wroclawhelperf.ui.buttons.MainButtonLayout;
+import com.wroclawhelperf.ui.MainView;
+import com.wroclawhelperf.ui.buttons.MainButtonAbstract;
 import com.wroclawhelperf.ui.views.Dashboard;
 
-public final class GoodbyeButton extends MainButtonLayout {
+public final class GoodbyeButton extends MainButtonAbstract {
 
-    private final Dashboard dashboard;
+    private final MainView mainView;
     private static GoodbyeButton goodbyeButtonInstance = null;
 
-    public static GoodbyeButton getInstance(Dashboard dashboard) {
+    public static GoodbyeButton getInstance(MainView mainView) {
         if (goodbyeButtonInstance == null) {
-            goodbyeButtonInstance = new GoodbyeButton(dashboard);
+            goodbyeButtonInstance = new GoodbyeButton(mainView);
         }
         return goodbyeButtonInstance;
     }
 
-    public GoodbyeButton(Dashboard dashboard) {
-        super();
-        this.dashboard = dashboard;
+    private GoodbyeButton(MainView mainView) {
+        super(mainView);
+        this.mainView = mainView;
         setText("GOODBYE!");
 
-        addClickListener(e -> dashboard.getMainView().reset());
+        addClickListener(e -> {
+            this.mainView.reset();
+            Dashboard.getInstance().reset();
+        });
     }
 }

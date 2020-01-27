@@ -4,18 +4,28 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 public class BikeStationsView extends VerticalLayout {
 
-    private final Dashboard dashboard;
     private static BikeStationsView bikeStationsViewInstance = null;
 
-    public static BikeStationsView getInstance(Dashboard dashboard) {
+
+    public static BikeStationsView getInstance() {
         if (bikeStationsViewInstance == null) {
-            bikeStationsViewInstance = new BikeStationsView(dashboard);
+            bikeStationsViewInstance = new BikeStationsView();
         }
         return bikeStationsViewInstance;
     }
 
-    private BikeStationsView(Dashboard dashboard) {
-        this.dashboard = dashboard;
+    private BikeStationsView() {
+        setContent();
+
+    }
+
+    private void setContent() {
+
+    }
+
+    public void reset() {
+        removeAll();
+        setContent();
     }
 
 }

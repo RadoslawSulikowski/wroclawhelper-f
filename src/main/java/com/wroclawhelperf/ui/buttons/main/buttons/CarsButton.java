@@ -1,25 +1,27 @@
 package com.wroclawhelperf.ui.buttons.main.buttons;
 
-import com.wroclawhelperf.ui.buttons.MainButtonLayout;
+import com.wroclawhelperf.ui.buttons.MainButtonAbstract;
 import com.wroclawhelperf.ui.views.Dashboard;
 
-public final class CarsButton extends MainButtonLayout {
+public final class CarsButton extends MainButtonAbstract {
 
-    private final Dashboard dashboard;
+    private final Dashboard dashboard = Dashboard.getInstance();
     private static CarsButton carsButtonInstance = null;
 
-    public static CarsButton getInstance(Dashboard dashboard) {
+    public static CarsButton getInstance() {
         if (carsButtonInstance == null) {
-            carsButtonInstance = new CarsButton(dashboard);
+            carsButtonInstance = new CarsButton();
         }
         return carsButtonInstance;
     }
 
-    private CarsButton(Dashboard dashboard) {
+    private CarsButton() {
         super();
-        this.dashboard = dashboard;
         setText("CARS");
 
-        addClickListener(e -> dashboard.removeAll());
+        addClickListener(e -> {
+            dashboard.reset();
+            dashboard.getHeading().setText("CARS");
+        });
     }
 }

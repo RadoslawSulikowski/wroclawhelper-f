@@ -1,23 +1,27 @@
 package com.wroclawhelperf.ui.buttons.main.buttons;
 
-import com.wroclawhelperf.ui.buttons.MainButtonLayout;
+import com.wroclawhelperf.ui.buttons.MainButtonAbstract;
 import com.wroclawhelperf.ui.views.Dashboard;
 
-public final class UserPanelButton extends MainButtonLayout {
+public final class UserPanelButton extends MainButtonAbstract {
 
-    private final Dashboard dashboard;
+    private final Dashboard dashboard = Dashboard.getInstance();
     private static UserPanelButton userPanelButtonInstance = null;
 
-    public static UserPanelButton getInstance(Dashboard dashboard) {
+    public static UserPanelButton getInstance() {
         if (userPanelButtonInstance == null) {
-            userPanelButtonInstance = new UserPanelButton(dashboard);
+            userPanelButtonInstance = new UserPanelButton();
         }
         return userPanelButtonInstance;
     }
 
-    private UserPanelButton(Dashboard dashboard) {
+    private UserPanelButton() {
         super();
-        this.dashboard = dashboard;
         setText("USER PANEL");
+
+        addClickListener(e -> {
+            dashboard.reset();
+            dashboard.getHeading().setText("USER PANEL");
+        });
     }
 }

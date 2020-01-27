@@ -1,33 +1,31 @@
 package com.wroclawhelperf.ui.buttons.main.buttons;
 
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.wroclawhelperf.ui.buttons.MainButtonLayout;
+import com.wroclawhelperf.ui.buttons.MainButtonAbstract;
 import com.wroclawhelperf.ui.buttons.bikes.buttons.GetAllBikeStationsButton;
 import com.wroclawhelperf.ui.views.BikeStationsView;
 import com.wroclawhelperf.ui.views.Dashboard;
 
-public final class BikesButton extends MainButtonLayout {
+public final class BikesButton extends MainButtonAbstract {
 
     private static BikesButton bikesButtonInstance = null;
-    private final Dashboard dashboard;
+    private final Dashboard dashboard = Dashboard.getInstance();
 
-    public static BikesButton getInstance(Dashboard dashboard) {
+    public static BikesButton getInstance() {
         if (bikesButtonInstance == null) {
-            bikesButtonInstance = new BikesButton(dashboard);
+            bikesButtonInstance = new BikesButton();
         }
         return bikesButtonInstance;
     }
 
-    private BikesButton(Dashboard dashboard) {
+    private BikesButton() {
         super();
-        this.dashboard = dashboard;
         setText("BIKES");
-        HorizontalLayout secondLevelButtonPanel = new HorizontalLayout(
-                GetAllBikeStationsButton.getInstance(BikeStationsView.getInstance(dashboard)));
         addClickListener(e -> {
-            BikeStationsView.getInstance(dashboard).removeAll();
-            dashboard.add(secondLevelButtonPanel);
-            dashboard.add(BikeStationsView.getInstance(dashboard));
+            BikeStationsView.getInstance().reset();
+            dashboard.reset();
+            dashboard.getHeading().setText("BIKE STATION PANEL");
+            dashboard.getSecondaryButtonPanel().add(GetAllBikeStationsButton.getInstance());
+            dashboard.add(BikeStationsView.getInstance());
         });
     }
 }
