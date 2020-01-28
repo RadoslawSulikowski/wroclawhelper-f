@@ -1,6 +1,5 @@
 package com.wroclawhelperf.service;
 
-import com.wroclawhelperf.domain.BikeStation;
 import com.wroclawhelperf.domain.GPSLocation;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +11,12 @@ class ServiceTests {
     @Autowired
     private BikeService bikeService;
 
+    @Autowired
+    private WeatherStationService weatherStationService;
+
     @Test
     void testGetAllBikesStations() {
-        for (BikeStation bikeStation : bikeService.getAllBikeStations()) {
-            System.out.println(bikeStation);
-        }
+        bikeService.getAllBikeStations().forEach(System.out::println);
     }
 
     @Test
@@ -27,11 +27,16 @@ class ServiceTests {
     @Test
     void testGetBikesStationNearestLocation() {
         System.out.println(bikeService.getBikeStationNearestLocation(
-                new GPSLocation (51.138235,16.973045)));
+                new GPSLocation(51.138235, 16.973045)));
     }
 
     @Test
     void testGetBikesStationNearestUser() {
         System.out.println(bikeService.getBikeStationNearestFromUser(17L));
+    }
+
+    @Test
+    void testGetWeatherStations() {
+        weatherStationService.getWeatherStations().forEach(System.out::println);
     }
 }

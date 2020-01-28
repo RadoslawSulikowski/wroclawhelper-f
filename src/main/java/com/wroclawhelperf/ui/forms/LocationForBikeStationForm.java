@@ -32,7 +32,7 @@ public class LocationForBikeStationForm extends LocationFormAbstract {
             stationsView.getResultContainer().add(resultStation);
             resultStation.setItems(service.getBikeStationNearestLocation(location));
         } catch(Exception e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
             Notification.show("Check data format and completeness");
         }
     }

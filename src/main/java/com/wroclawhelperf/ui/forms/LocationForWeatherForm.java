@@ -33,7 +33,7 @@ public class LocationForWeatherForm extends LocationFormAbstract {
             weatherView.getResultContainer().add(weather);
             weather.setItems(service.getWeatherNearestLocation(location));
         } catch(Exception e) {
-            LOGGER.error(e.getMessage());
+            LOGGER.error(e.getMessage(), e);
             Notification.show("Check data format and completeness");
         }
     }
