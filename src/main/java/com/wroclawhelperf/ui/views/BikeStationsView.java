@@ -5,7 +5,10 @@ import lombok.Getter;
 
 @Getter
 public class BikeStationsView extends VerticalLayout {
+
     private final Dashboard dashboard;
+
+    private VerticalLayout resultContainer = new VerticalLayout();
 
     public BikeStationsView(Dashboard dashboard) {
         this.dashboard = dashboard;
@@ -13,10 +16,12 @@ public class BikeStationsView extends VerticalLayout {
     }
 
     private void setContent() {
-
+        resultContainer.setHeight("30%");
+        add(resultContainer);
     }
 
     public void reset() {
+        resultContainer.removeAll();
         removeAll();
         setContent();
     }

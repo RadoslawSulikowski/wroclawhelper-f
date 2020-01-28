@@ -23,6 +23,8 @@ dependencies {
     }
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+    compile 'org.apache.httpcomponents:httpclient:4.5.11'
+
 }
 
 dependencyManagement {
