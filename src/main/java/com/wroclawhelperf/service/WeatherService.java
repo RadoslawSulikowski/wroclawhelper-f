@@ -1,8 +1,10 @@
 package com.wroclawhelperf.service;
 
+import com.wroclawhelperf.domain.GPSLocation;
 import com.wroclawhelperf.domain.Weather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
@@ -47,5 +49,15 @@ public class WeatherService {
             LOGGER.error(e.getMessage(), e);
             return new ArrayList<>();
         }
+    }
+
+    public Weather getWeatherNearestLocation(GPSLocation location) {
+        RequestFactory requestFactory = new RequestFactory();
+        RestTemplate restTemplate = requestFactory.getRestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        ResponseEntity<Weather> responseEntity = restTemplate.exchange(sourceRoot + "/weather/location", HttpMethod.GET,
+                new HttpEntity<>(location, headers), Weather.class);
+        return responseEntity.getBody();
     }
 }

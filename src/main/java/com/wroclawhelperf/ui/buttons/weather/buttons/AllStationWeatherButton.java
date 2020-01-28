@@ -4,14 +4,14 @@ import com.vaadin.flow.component.grid.Grid;
 import com.wroclawhelperf.domain.Weather;
 import com.wroclawhelperf.service.WeatherService;
 import com.wroclawhelperf.ui.buttons.SecondaryButtonAbstract;
-import com.wroclawhelperf.ui.views.WeatherView;
+import com.wroclawhelperf.ui.views.StationsView;
 
 public class AllStationWeatherButton extends SecondaryButtonAbstract {
 
-    private final WeatherView weatherView;
+    private final StationsView weatherView;
     private WeatherService service = WeatherService.getInstance();
 
-    public AllStationWeatherButton(WeatherView weatherView) {
+    public AllStationWeatherButton(StationsView weatherView) {
         super();
         this.weatherView = weatherView;
         setText("WEATHER ON ALL STATIONS");

@@ -7,16 +7,16 @@ import com.vaadin.flow.component.html.Label;
 import com.wroclawhelperf.domain.BikeStation;
 import com.wroclawhelperf.service.BikeService;
 import com.wroclawhelperf.ui.buttons.SecondaryButtonAbstract;
-import com.wroclawhelperf.ui.views.BikeStationsView;
+import com.wroclawhelperf.ui.views.StationsView;
 
-public class GetAllBikeStationsButton extends SecondaryButtonAbstract {
+public class AllBikeStationsButton extends SecondaryButtonAbstract {
 
     private final BikeService service = BikeService.getInstance();
-    private final BikeStationsView bikeStationsView;
+    private final StationsView stationsView;
 
-    public GetAllBikeStationsButton(BikeStationsView bikeStationsView) {
+    public AllBikeStationsButton(StationsView stationsView) {
         super();
-        this.bikeStationsView = bikeStationsView;
+        this.stationsView = stationsView;
         setText("ALL STATIONS");
 
         Label stationName = new Label();
@@ -40,8 +40,8 @@ public class GetAllBikeStationsButton extends SecondaryButtonAbstract {
         });
 
         addClickListener(e -> {
-            this.bikeStationsView.removeAll();
-            this.bikeStationsView.add(bikeStationGrid, stationName, bikeGrid);
+            this.stationsView.removeAll();
+            this.stationsView.add(bikeStationGrid, stationName, bikeGrid);
         });
     }
 

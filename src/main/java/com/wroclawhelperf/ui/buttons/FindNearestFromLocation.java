@@ -1,6 +1,4 @@
-package com.wroclawhelperf.ui.buttons.bikes.buttons.nextlvlbut;
-
-import com.wroclawhelperf.ui.buttons.TertiaryButtonAbstract;
+package com.wroclawhelperf.ui.buttons;
 
 public class FindNearestFromLocation extends TertiaryButtonAbstract {
 

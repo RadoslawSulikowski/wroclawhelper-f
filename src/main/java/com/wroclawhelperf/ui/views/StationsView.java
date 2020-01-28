@@ -4,13 +4,13 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import lombok.Getter;
 
 @Getter
-public class BikeStationsView extends VerticalLayout {
+public class StationsView extends VerticalLayout {
 
     private final Dashboard dashboard;
 
     private VerticalLayout resultContainer = new VerticalLayout();
 
-    public BikeStationsView(Dashboard dashboard) {
+    public StationsView(Dashboard dashboard) {
         this.dashboard = dashboard;
         setContent();
     }
