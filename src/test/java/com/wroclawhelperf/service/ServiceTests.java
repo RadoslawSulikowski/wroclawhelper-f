@@ -17,6 +17,9 @@ class ServiceTests {
     @Autowired
     private WeatherService weatherService;
 
+    @Autowired
+    private CarService carService;
+
     @Test
     void testGetAllBikesStations() {
         bikeService.getAllBikeStations().forEach(System.out::println);
@@ -46,6 +49,12 @@ class ServiceTests {
     @Test
     void testGetWeatherStation() {
         System.out.println(weatherService.getWeatherOnStation("MILENIJNY"));
+
+    }
+
+    @Test
+    void testGetAllCars() {
+       carService.getAllCars().forEach(System.out::println);
 
     }
 }

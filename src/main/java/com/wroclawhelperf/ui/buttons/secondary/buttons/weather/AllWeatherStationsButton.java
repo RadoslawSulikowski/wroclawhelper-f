@@ -14,7 +14,7 @@ public class AllWeatherStationsButton extends SecondaryButtonAbstract {
         setText("All STATIONS");
 
         addClickListener(e -> {
-            weatherView.reset();
+            weatherView.removeAll();
             weatherView.add(new AllWeatherStationGridLayout());
         });
 

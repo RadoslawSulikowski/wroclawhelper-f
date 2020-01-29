@@ -1,0 +1,1 @@
+web: java -jar build/libs/wroclawhelper-f-0.0.1-SNAPSHOT.jar
