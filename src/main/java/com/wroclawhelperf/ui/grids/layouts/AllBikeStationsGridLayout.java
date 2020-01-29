@@ -1,23 +1,18 @@
-package com.wroclawhelperf.ui.buttons.bikes.buttons;
+package com.wroclawhelperf.ui.grids.layouts;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.wroclawhelperf.domain.BikeStation;
 import com.wroclawhelperf.service.BikeService;
-import com.wroclawhelperf.ui.buttons.SecondaryButtonAbstract;
-import com.wroclawhelperf.ui.views.StationsView;
 
-public class AllBikeStationsButton extends SecondaryButtonAbstract {
+public class AllBikeStationsGridLayout extends VerticalLayout {
 
     private final BikeService service = BikeService.getInstance();
-    private final StationsView stationsView;
 
-    public AllBikeStationsButton(StationsView stationsView) {
-        super();
-        this.stationsView = stationsView;
-        setText("ALL STATIONS");
+    public AllBikeStationsGridLayout() {
 
         Label stationName = new Label();
 
@@ -39,10 +34,6 @@ public class AllBikeStationsButton extends SecondaryButtonAbstract {
             return button;
         });
 
-        addClickListener(e -> {
-            this.stationsView.removeAll();
-            this.stationsView.add(bikeStationGrid, stationName, bikeGrid);
-        });
+        add(bikeStationGrid, stationName, bikeGrid);
     }
-
 }

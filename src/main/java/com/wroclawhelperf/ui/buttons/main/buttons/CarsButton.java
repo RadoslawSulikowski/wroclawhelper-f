@@ -1,6 +1,6 @@
 package com.wroclawhelperf.ui.buttons.main.buttons;
 
-import com.wroclawhelperf.ui.buttons.MainButtonAbstract;
+import com.wroclawhelperf.ui.buttons.abstrct.templates.MainButtonAbstract;
 import com.wroclawhelperf.ui.views.Dashboard;
 
 public final class CarsButton extends MainButtonAbstract {

@@ -1,4 +1,4 @@
-package com.wroclawhelperf.ui.buttons;
+package com.wroclawhelperf.ui.buttons.abstrct.templates;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;

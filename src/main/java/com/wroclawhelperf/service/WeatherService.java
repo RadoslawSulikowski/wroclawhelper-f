@@ -51,6 +51,17 @@ public class WeatherService {
         }
     }
 
+    public Weather getWeatherOnStation(String stationShortName) {
+        URI uriRequest = UriComponentsBuilder.fromHttpUrl(sourceRoot + "/weather/" + stationShortName)
+                .build().encode().toUri();
+        try {
+            return restTemplate.getForObject(uriRequest, Weather.class);
+        } catch(RestClientException e) {
+            LOGGER.error(e.getMessage(), e);
+            return null;
+        }
+    }
+
     public Weather getWeatherNearestLocation(GPSLocation location) {
         RequestFactory requestFactory = new RequestFactory();
         RestTemplate restTemplate = requestFactory.getRestTemplate();

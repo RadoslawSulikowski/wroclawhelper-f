@@ -1,19 +1,19 @@
-package com.wroclawhelperf.ui.buttons.weather.buttons;
+package com.wroclawhelperf.ui.buttons.secondary.buttons.weather;
 
 import com.vaadin.flow.component.grid.Grid;
 import com.wroclawhelperf.domain.Weather;
 import com.wroclawhelperf.service.WeatherService;
-import com.wroclawhelperf.ui.buttons.SecondaryButtonAbstract;
+import com.wroclawhelperf.ui.buttons.abstrct.templates.SecondaryButtonAbstract;
 import com.wroclawhelperf.ui.views.StationsView;
 
-public class AllStationWeatherButton extends SecondaryButtonAbstract {
+public class WeatherAtAllStationsButton extends SecondaryButtonAbstract {
 
     private final StationsView weatherView;
     private WeatherService service = WeatherService.getInstance();
 
-    public AllStationWeatherButton(StationsView weatherView) {
+    public WeatherAtAllStationsButton(StationsView staionView) {
         super();
-        this.weatherView = weatherView;
+        weatherView = staionView;
         setText("WEATHER ON ALL STATIONS");
         Grid<Weather> weather = new Grid<>(Weather.class);
         weather.setColumns("measuringTime", "windSpeed", "windDirection", "humidity", "airTemperature",
@@ -21,8 +21,8 @@ public class AllStationWeatherButton extends SecondaryButtonAbstract {
         weather.getColumns().forEach(c -> c.setAutoWidth(true));
         weather.setItems(service.getWeatherOnAllStations());
         addClickListener(e -> {
-            this.weatherView.removeAll();
-            this.weatherView.add(weather);
+            weatherView.removeAll();
+            weatherView.add(weather);
         });
     }
 }
