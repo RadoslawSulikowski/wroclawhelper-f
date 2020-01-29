@@ -1,5 +1,6 @@
 package com.wroclawhelperf.service;
 
+import com.wroclawhelperf.config.Config;
 import com.wroclawhelperf.domain.GPSLocation;
 import com.wroclawhelperf.domain.Weather;
 import org.slf4j.Logger;
@@ -22,10 +23,9 @@ public class WeatherService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WeatherService.class);
 
-    //@Value("${api.source.root}")
-    private String sourceRoot = "http://localhost:8080";
-
+    private String sourceRoot = Config.SOURCE_ROOT;
     private RestTemplate restTemplate = new RestTemplate();
+
     private static WeatherService weatherServiceInstance = null;
 
     public static WeatherService getInstance() {

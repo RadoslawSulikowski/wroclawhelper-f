@@ -1,5 +1,6 @@
 package com.wroclawhelperf.service;
 
+import com.wroclawhelperf.config.Config;
 import com.wroclawhelperf.domain.BikeStation;
 import com.wroclawhelperf.domain.GPSLocation;
 import org.slf4j.Logger;
@@ -19,12 +20,11 @@ import static java.util.Optional.ofNullable;
 public class BikeService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(BikeService.class);
+
     private RestTemplate restTemplate = new RestTemplate();
+    private String sourceRoot = Config.SOURCE_ROOT;
+
     private static BikeService bikeServiceInstance = null;
-
-    //@Value("${api.source.root}")
-    private String sourceRoot = "http://localhost:8080";
-
 
     public static BikeService getInstance() {
         if (bikeServiceInstance == null) {

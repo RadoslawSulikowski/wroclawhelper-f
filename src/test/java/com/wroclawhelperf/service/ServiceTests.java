@@ -35,7 +35,7 @@ class ServiceTests {
 
     @Test
     void testGetBikesStationNearestUser() {
-        System.out.println(bikeService.getBikeStationNearestFromUser(17L));
+        System.out.println(bikeService.getBikeStationNearestFromUser(8L));
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.wroclawhelperf.service;
 
+import com.wroclawhelperf.config.Config;
 import com.wroclawhelperf.domain.WeatherStation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,11 +18,10 @@ import static java.util.Optional.ofNullable;
 
 @Service
 public class WeatherStationService {
-
-    //@Value("${api.source.root}")
-    private String sourceURL = "http://localhost:8080";
-    private RestTemplate restTemplate = new RestTemplate();
     private static final Logger LOGGER = LoggerFactory.getLogger(WeatherStationService.class);
+
+    private RestTemplate restTemplate = new RestTemplate();
+    private String sourceURL = Config.SOURCE_ROOT;
 
     private static WeatherStationService weatherServiceInstance = null;
 
@@ -35,6 +35,7 @@ public class WeatherStationService {
     private WeatherStationService() {
 
     }
+
 
     public List<WeatherStation> getWeatherStations() {
         URI uriRequest = UriComponentsBuilder.fromHttpUrl(sourceURL + "/weatherstations")
