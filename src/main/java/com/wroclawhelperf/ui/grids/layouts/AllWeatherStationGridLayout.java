@@ -25,7 +25,7 @@ public class AllWeatherStationGridLayout extends VerticalLayout {
         weatherOnStation.getColumns().forEach(c -> c.setAutoWidth(true));
 
         Grid<WeatherStation> allStations = new Grid<>(WeatherStation.class);
-        allStations.setColumns("shortName", "name", "location");
+        allStations.setColumns("shortName", "name", "location.latitude", "location.longitude");
         allStations.getColumns().forEach(c -> c.setAutoWidth(true));
         allStations.setItems(stationService.getWeatherStations());
         allStations.addComponentColumn(station -> {

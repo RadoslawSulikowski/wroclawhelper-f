@@ -17,7 +17,7 @@ public class AllBikeStationsGridLayout extends VerticalLayout {
         Label stationName = new Label();
 
         Grid<BikeStation> bikeGrid = new Grid<>(BikeStation.class);
-        bikeGrid.setColumns("uniqueId", "number", "bikeList", "location");
+        bikeGrid.setColumns("uniqueId", "number", "bikeList", "location.latitude", "location.longitude");
         bikeGrid.getColumns().forEach(c -> c.setAutoWidth(true));
 
         Grid<BikeStation> bikeStationGrid = new Grid<>(BikeStation.class);

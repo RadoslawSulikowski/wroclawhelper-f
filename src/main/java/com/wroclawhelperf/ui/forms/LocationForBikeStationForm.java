@@ -26,7 +26,8 @@ public class LocationForBikeStationForm extends LocationFormAbstract {
             double longitude = parseDouble(longitudeTF.getValue());
             GPSLocation location = new GPSLocation(latitude, longitude);
             Grid<BikeStation> resultStation = new Grid<>(BikeStation.class);
-            resultStation.setColumns("name", "bikes", "bookedBikes", "uniqueId", "number", "bikeList", "location");
+            resultStation.setColumns("name", "bikes", "bookedBikes", "uniqueId", "number", "bikeList",
+                    "location.latitude", "location.longitude");
             resultStation.getColumns().forEach(c -> c.setAutoWidth(true));
             stationsView.getResultContainer().removeAll();
             stationsView.getResultContainer().add(resultStation);
