@@ -17,18 +17,19 @@ public class AllCarsGridLayout extends VerticalLayout {
         Label plateNumber = new Label();
 
         Grid<VozillaCar> singleCarGrid = new Grid<>(VozillaCar.class);
-        singleCarGrid.setColumns("platesNumber", "type", "name", "color", "status", "address");
+        singleCarGrid.setColumns("sideNumber", "batteryLevelPct", "rangeKm",
+                "address", "location.latitude", "location.longitude");
         singleCarGrid.getColumns().forEach(c -> c.setAutoWidth(true));
 
         Grid<VozillaCar> carsGrid = new Grid<>(VozillaCar.class);
-        carsGrid.setColumns("sideNumber", "batteryLevelPct", "rangeKm", "location.latitude", "location.longitude");
+        carsGrid.setColumns("platesNumber", "type", "name", "color", "status");
         carsGrid.getColumns().forEach(c -> c.setAutoWidth(true));
         carsGrid.setItems(service.getAllCars());
         carsGrid.addComponentColumn(cars -> {
             Button button = new Button("DETAILS");
             button.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);
             button.addClickListener(click -> {
-                plateNumber.setText(cars.getName());
+                plateNumber.setText(cars.getPlatesNumber());
                 singleCarGrid.setItems(cars);
             });
             return button;
