@@ -4,6 +4,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.PasswordField;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.wroclawhelperf.ui.buttons.StartButton;
 import lombok.Getter;
@@ -15,6 +17,8 @@ public class MainView extends HorizontalLayout {
     private VerticalLayout leftPanel = new VerticalLayout();
     private VerticalLayout container = new VerticalLayout();
     private Label label = new Label();
+    private TextField username = new TextField("username", "username");
+    private PasswordField password = new PasswordField("password", "password");
     private Button startButton = new StartButton(this);
 
     public MainView() {

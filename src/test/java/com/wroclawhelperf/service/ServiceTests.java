@@ -1,6 +1,7 @@
 package com.wroclawhelperf.service;
 
 import com.wroclawhelperf.domain.GPSLocation;
+import com.wroclawhelperf.domain.UserToVerify;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -8,18 +9,31 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class ServiceTests {
 //
-//    @Autowired
-//    private BikeService bikeService;
+    @Autowired
+    private BikeService bikeService;
+
+    @Autowired
+    private WeatherStationService weatherStationService;
+
+    @Autowired
+    private WeatherService weatherService;
+
+    @Autowired
+    private CarService carService;
+
+    @Autowired
+    private UserService userService;
+
+//    @Test
+//    void testGetUserByUsername() {
+//        System.out.println(userService.getUserByUsername("a"));
+//    }
 //
-//    @Autowired
-//    private WeatherStationService weatherStationService;
-//
-//    @Autowired
-//    private WeatherService weatherService;
-//
-//    @Autowired
-//    private CarService carService;
-//
+//    @Test
+//    void testVerifyUser() {
+//        System.out.println(userService.verifyUser(new UserToVerify("a","b")));
+//    }
+
 //    @Test
 //    void testGetAllBikesStations() {
 //        bikeService.getAllBikeStations().forEach(System.out::println);
