@@ -10,8 +10,8 @@ public class StationsView extends VerticalLayout {
 
     private VerticalLayout resultContainer = new VerticalLayout();
 
-    public StationsView(Dashboard dashboard) {
-        this.dashboard = dashboard;
+    public StationsView(Dashboard d) {
+        dashboard = d;
         setContent();
     }
 

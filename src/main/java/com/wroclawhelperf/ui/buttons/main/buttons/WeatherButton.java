@@ -12,9 +12,9 @@ public final class WeatherButton extends MainButtonAbstract {
 
     private final Dashboard dashboard;
 
-    public WeatherButton(Dashboard dashboard) {
+    public WeatherButton(Dashboard d) {
         super();
-        this.dashboard = dashboard;
+        dashboard = d;
         setText("WEATHER");
         StationsView weatherView = new StationsView(dashboard);
         Button allWeatherStationsButton = new AllWeatherStationsButton(weatherView);
@@ -22,11 +22,11 @@ public final class WeatherButton extends MainButtonAbstract {
         Button findNearestWeatherStationButton = new FindNearestWeatherStationButton(weatherView);
 
         addClickListener(e -> {
-            this.dashboard.reset();
-            this.dashboard.getHeading().setText("WEATHER");
-            this.dashboard.getSecondaryButtonPanel()
+            dashboard.reset();
+            dashboard.getHeading().setText("WEATHER");
+            dashboard.getSecondaryButtonPanel()
                     .add(allWeatherStationsButton, allStationWeatherButton, findNearestWeatherStationButton);
-            this.dashboard.getContainer().add(weatherView);
+            dashboard.getContainer().add(weatherView);
         });
     }
 }

@@ -11,18 +11,18 @@ public final class BikesButton extends MainButtonAbstract {
 
     private final Dashboard dashboard;
 
-    public BikesButton(Dashboard dashboard) {
+    public BikesButton(Dashboard d) {
         super();
-        this.dashboard = dashboard;
+        dashboard = d;
         setText("BIKES");
-        StationsView stationsView = new StationsView(this.dashboard);
+        StationsView stationsView = new StationsView(dashboard);
         Button getAllBikeStationsButton = new AllBikeStationsButton(stationsView);
         Button findNearestStationButton = new FindNearestBikeStationButton(stationsView);
         addClickListener(e -> {
-            this.dashboard.reset();
-            this.dashboard.getHeading().setText("BIKE STATION PANEL");
-            this.dashboard.getSecondaryButtonPanel().add(getAllBikeStationsButton, findNearestStationButton);
-            this.dashboard.getContainer().add(stationsView);
+            dashboard.reset();
+            dashboard.getHeading().setText("BIKE STATION PANEL");
+            dashboard.getSecondaryButtonPanel().add(getAllBikeStationsButton, findNearestStationButton);
+            dashboard.getContainer().add(stationsView);
         });
     }
 }

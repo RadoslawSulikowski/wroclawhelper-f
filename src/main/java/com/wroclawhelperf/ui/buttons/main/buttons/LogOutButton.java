@@ -7,13 +7,13 @@ public final class LogOutButton extends MainButtonAbstract {
 
     private final Dashboard dashboard;
 
-    public LogOutButton(Dashboard dashboard) {
+    public LogOutButton(Dashboard d) {
         super();
-        this.dashboard = dashboard;
+        dashboard = d;
         setText("LOG OUT!");
 
         addClickListener(e -> {
-            this.dashboard.removeAll();
+            dashboard.removeAll();
             dashboard.getMainView().setLoggedUser("");
             dashboard.reset();
             dashboard.getMainView().reset();

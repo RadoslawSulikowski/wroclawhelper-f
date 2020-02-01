@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class User {
 
-    private Long id;
     private String firstName;
     private String lastName;
     private String userName;
@@ -21,7 +20,6 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", userName='" + userName + '\'' +

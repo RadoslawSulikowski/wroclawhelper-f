@@ -11,18 +11,18 @@ public final class CarsButton extends MainButtonAbstract {
 
     private final Dashboard dashboard;
 
-    public CarsButton(Dashboard dashboard) {
+    public CarsButton(Dashboard d) {
         super();
-        this.dashboard = dashboard;
+        dashboard = d;
         setText("CARS");
-        StationsView stationsView = new StationsView(this.dashboard);
+        StationsView stationsView = new StationsView(dashboard);
         Button getAllCarsButton = new AllCarsButton(stationsView);
         Button findNearestCarButton = new FindNearestCarButton(stationsView);
         addClickListener(e -> {
-            this.dashboard.reset();
-            this.dashboard.getHeading().setText("VOZILLA CARS PANEL");
-            this.dashboard.getContainer().add(stationsView);
-            this.dashboard.getSecondaryButtonPanel().add(getAllCarsButton, findNearestCarButton);
+            dashboard.reset();
+            dashboard.getHeading().setText("VOZILLA CARS PANEL");
+            dashboard.getContainer().add(stationsView);
+            dashboard.getSecondaryButtonPanel().add(getAllCarsButton, findNearestCarButton);
         });
     }
 }

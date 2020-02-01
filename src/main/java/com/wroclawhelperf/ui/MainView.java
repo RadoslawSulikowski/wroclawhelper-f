@@ -48,7 +48,7 @@ public class MainView extends HorizontalLayout {
         loggedUser = username;
     }
 
-    public String getLoggedUser() {
+    public static String getLoggedUser() {
         return loggedUser;
     }
 }
