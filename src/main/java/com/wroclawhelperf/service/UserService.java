@@ -51,4 +51,15 @@ public class UserService {
         return (ofNullable(responseEntity.getBody()).orElse("false")).equals("true");
     }
 
+    public User updateUser(User user) {
+        RequestFactory requestFactory = new RequestFactory();
+        RestTemplate restTemplate = requestFactory.getRestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        ResponseEntity<User> responseEntity = restTemplate.exchange(sourceRoot + "/users", HttpMethod.PUT,
+                new HttpEntity<>(user, headers), User.class);
+        return responseEntity.getBody();
+    }
+
+
 }

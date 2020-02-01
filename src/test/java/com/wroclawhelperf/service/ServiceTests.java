@@ -1,6 +1,7 @@
 package com.wroclawhelperf.service;
 
 import com.wroclawhelperf.domain.GPSLocation;
+import com.wroclawhelperf.domain.User;
 import com.wroclawhelperf.domain.UserToVerify;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,19 @@ class ServiceTests {
     @Autowired
     private UserService userService;
 
+    @Test
+    void testUpdateUser() {
+        User user = new User(
+                "c",
+                "c",
+                "a",
+                "c",
+                "c",
+                new GPSLocation(52,17),
+                false
+        );
+        System.out.println(userService.updateUser(user));
+    }
 //    @Test
 //    void testGetUserByUsername() {
 //        System.out.println(userService.getUserByUsername("a"));

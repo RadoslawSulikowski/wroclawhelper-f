@@ -1,30 +1,50 @@
 package com.wroclawhelperf.ui.views;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
+import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.wroclawhelperf.domain.User;
 import com.wroclawhelperf.service.UserService;
 import com.wroclawhelperf.ui.MainView;
+import com.wroclawhelperf.ui.buttons.secondary.buttons.user.*;
+import lombok.Getter;
 
+@Getter
 public class UserPanelView extends VerticalLayout {
 
     private final Dashboard dashboard;
     private final UserService userService = UserService.getInstance();
-    User user = userService.getUserByUsername(MainView.getLoggedUser());
+    private final User user = userService.getUserByUsername(MainView.getLoggedUser());
 
     private HorizontalLayout usernameRow = new HorizontalLayout();
     private HorizontalLayout firstNameRow = new HorizontalLayout();
     private HorizontalLayout lastNameRow = new HorizontalLayout();
     private HorizontalLayout passwordRow = new HorizontalLayout();
     private HorizontalLayout emailRow = new HorizontalLayout();
-    private HorizontalLayout LocationBlock = new HorizontalLayout();
+    private VerticalLayout LocationBlock = new VerticalLayout();
     private HorizontalLayout schedulerRow = new HorizontalLayout();
+    private HorizontalLayout latitudeRow = new HorizontalLayout();
+    private HorizontalLayout longitudeRow = new HorizontalLayout();
     private HorizontalLayout saveAndCancelButtonsRow = new HorizontalLayout();
+
+    private Label dialogLabel = new Label();
+    private Dialog dialog = new Dialog(dialogLabel);
+
+    private TextField firstNameField = new TextField();
+    private TextField lastNameField = new TextField();
+    private PasswordField passwordField = new PasswordField();
+    private PasswordField confirmPasswordField = new PasswordField();
+    private EmailField emailField = new EmailField();
+    private NumberField latitudeField = new NumberField();
+    private NumberField longitudeField = new NumberField();
+    private Checkbox schedulerCheckbox = new Checkbox();
 
     public UserPanelView(Dashboard d) {
         dashboard = d;
@@ -34,35 +54,36 @@ public class UserPanelView extends VerticalLayout {
 
     private void setContent() {
 
-        usernameRow.add(new Label(MainView.getLoggedUser()));
+        usernameRow.add(new Label("USERNAME:"), new Label(MainView.getLoggedUser()));
 
-        TextField firstNameField = new TextField();
+        dialog.setWidth("300px");
+        dialog.setHeight("100px");
+
         firstNameField.setValue(user.getFirstName());
-        Button saveFirstNameButton = new Button("SAVE");
-        firstNameRow.add(new Label(" FIRST NAME:"), firstNameField,saveFirstNameButton);
+        firstNameRow.add(new Label(" FIRST NAME:"), firstNameField, new SaveFirstNameButton(this));
 
-        TextField lastNameField = new TextField();
         lastNameField.setValue(user.getLastName());
-        Button saveLastNameButton = new Button("SAVE");
-        lastNameRow.add(new Label("LAST NAME:"), lastNameField, saveLastNameButton);
+        lastNameRow.add(new Label("LAST NAME:"), lastNameField, new SaveLastNameButton(this));
 
-        PasswordField passwordField = new PasswordField();
-        PasswordField confirmPasswordField = new PasswordField();
         firstNameField.setValue(user.getFirstName());
-        Button savePasswordButton = new Button("SAVE");
-        passwordRow.add(new Label("PASSWORD:"), passwordField, confirmPasswordField, savePasswordButton);
+        passwordRow.add(new Label("PASSWORD:"), passwordField, confirmPasswordField, new SavePasswordButton(this));
 
-        EmailField emailField = new EmailField();
         emailField.setValue(user.getEmail());
-        Button saveEmailButton = new Button("SAVE");
-        emailRow.add(new Label("EMAIL:"), emailField, saveEmailButton);
+        emailRow.add(new Label("EMAIL:"), emailField, new SavePasswordButton(this));
 
-        LocationBlock.add(new Label("LOCATION:"));
-        schedulerRow.add(new Label("SCHEDULER:"));
-        saveAndCancelButtonsRow.add(new Button("CANCEL"), new Button("SAVE ALL CHANGES"));
-        
-        
-        
+        latitudeField.setValue(user.getLocation().getLatitude());
+        longitudeField.setValue(user.getLocation().getLongitude());
+        latitudeRow.add(new Label("latitude"), latitudeField);
+        longitudeRow.add(new Label("longitude"), longitudeField);
+
+        LocationBlock.add(new Label("LOCATION:"), latitudeRow, longitudeRow, new SaveLocationButton(this));
+
+        schedulerCheckbox.setValue(user.isSchedulerOn());
+        schedulerRow.add(new Label("SCHEDULER ON:"), schedulerCheckbox, new SaveSchedulerButton(this));
+
+        saveAndCancelButtonsRow.add(new ResetAllChangesButton(this), new SaveAllChangesButton(this));
+
+
         add(usernameRow, firstNameRow, lastNameRow, passwordRow, emailRow, LocationBlock, schedulerRow, saveAndCancelButtonsRow);
     }
 }
