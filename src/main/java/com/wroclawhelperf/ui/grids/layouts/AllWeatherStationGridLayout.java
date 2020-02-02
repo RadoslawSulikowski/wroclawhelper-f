@@ -13,7 +13,7 @@ import com.wroclawhelperf.service.WeatherStationService;
 public class AllWeatherStationGridLayout extends VerticalLayout {
 
     private final WeatherStationService stationService = WeatherStationService.getInstance();
-    private final WeatherService weatherService= WeatherService.getInstance();
+    private final WeatherService weatherService = WeatherService.getInstance();
 
     public AllWeatherStationGridLayout() {
 

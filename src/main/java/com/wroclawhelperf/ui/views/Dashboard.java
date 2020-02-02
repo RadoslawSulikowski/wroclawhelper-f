@@ -16,11 +16,12 @@ public class Dashboard extends HorizontalLayout {
     private VerticalLayout leftButtonPanel = new VerticalLayout();
     private VerticalLayout container = new VerticalLayout();
 
+    private Label loggedAs = new Label();
     private Button userPanelButton = new UserPanelButton(this);
     private Button bikesButton = new BikesButton(this);
     private Button weatherButton = new WeatherButton(this);
     private Button carsButton = new CarsButton(this);
-    private Button goodbyeButton = new GoodbyeButton(this);
+    private Button logOutButton = new LogOutButton(this);
     private Label heading = new Label();
 
     private HorizontalLayout secondaryButtonPanel = new HorizontalLayout();
@@ -35,8 +36,9 @@ public class Dashboard extends HorizontalLayout {
         secondaryButtonPanel.setHeight("10%");
         leftButtonPanel.setWidth("10%");
         container.setWidth("90%");
+        loggedAs.setText("Logged as " + mainView.getLoggedUser());
 
-        leftButtonPanel.add(userPanelButton,bikesButton, weatherButton, carsButton, goodbyeButton);
+        leftButtonPanel.add(loggedAs, logOutButton, userPanelButton, bikesButton, weatherButton, carsButton);
         container.add(heading, secondaryButtonPanel);
 
         add(leftButtonPanel, container);

@@ -1,25 +1,64 @@
 package com.wroclawhelperf.service;
 
 import com.wroclawhelperf.domain.GPSLocation;
+import com.wroclawhelperf.domain.User;
+import com.wroclawhelperf.domain.UserToVerify;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootTest
 class ServiceTests {
 //
-//    @Autowired
-//    private BikeService bikeService;
+    @Autowired
+    private BikeService bikeService;
+
+    @Autowired
+    private WeatherStationService weatherStationService;
+
+    @Autowired
+    private WeatherService weatherService;
+
+    @Autowired
+    private CarService carService;
+
+    @Autowired
+    private UserService userService;
 //
-//    @Autowired
-//    private WeatherStationService weatherStationService;
+//    @Test
+//    void testUpdateUserProperty() {
+//        Map<String, String> map = new HashMap<>();
+//        map.put("username", "b");
+//        map.put("email", "email");
+//        System.out.println(userService.updateUserProperty(map));
+//    }
 //
-//    @Autowired
-//    private WeatherService weatherService;
+//    @Test
+//    void testUpdateUser() {
+//        User user = new User(
+//                "c",
+//                "c",
+//                "a",
+//                "c",
+//                "c",
+//                new GPSLocation(52,17),
+//                false
+//        );
+//        System.out.println(userService.updateUser(user));
+//    }
+//    @Test
+//    void testGetUserByUsername() {
+//        System.out.println(userService.getUserByUsername("a"));
+//    }
 //
-//    @Autowired
-//    private CarService carService;
-//
+//    @Test
+//    void testVerifyUser() {
+//        System.out.println(userService.verifyUser(new UserToVerify("a","b")));
+//    }
+
 //    @Test
 //    void testGetAllBikesStations() {
 //        bikeService.getAllBikeStations().forEach(System.out::println);

@@ -1,7 +1,6 @@
 package com.wroclawhelperf.service;
 
 import com.wroclawhelperf.config.Config;
-import com.wroclawhelperf.domain.BikeStation;
 import com.wroclawhelperf.domain.GPSLocation;
 import com.wroclawhelperf.domain.VozillaCar;
 import org.slf4j.Logger;
@@ -36,7 +35,7 @@ public class CarService {
         return carServiceInstance;
     }
 
-    private CarService (){
+    private CarService() {
 
     }
 
@@ -47,7 +46,7 @@ public class CarService {
                     .build().encode().toUri();
             return Arrays.asList(ofNullable(restTemplate.getForObject(uriRequest, VozillaCar[].class))
                     .orElse(new VozillaCar[0]));
-        } catch (RestClientException e) {
+        } catch(RestClientException e) {
             LOGGER.error(e.getMessage(), e);
             return new ArrayList<>();
         }
