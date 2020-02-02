@@ -38,7 +38,7 @@ public class Dashboard extends HorizontalLayout {
         container.setWidth("90%");
         loggedAs.setText("Logged as " + mainView.getLoggedUser());
 
-        leftButtonPanel.add(loggedAs, logOutButton, userPanelButton,bikesButton, weatherButton, carsButton);
+        leftButtonPanel.add(loggedAs, logOutButton, userPanelButton, bikesButton, weatherButton, carsButton);
         container.add(heading, secondaryButtonPanel);
 
         add(leftButtonPanel, container);

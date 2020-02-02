@@ -2,9 +2,9 @@ package com.wroclawhelperf.ui.buttons.main.buttons;
 
 import com.vaadin.flow.component.button.Button;
 import com.wroclawhelperf.ui.buttons.abstrct.templates.MainButtonAbstract;
-import com.wroclawhelperf.ui.buttons.secondary.buttons.weather.WeatherAtAllStationsButton;
 import com.wroclawhelperf.ui.buttons.secondary.buttons.weather.AllWeatherStationsButton;
 import com.wroclawhelperf.ui.buttons.secondary.buttons.weather.FindNearestWeatherStationButton;
+import com.wroclawhelperf.ui.buttons.secondary.buttons.weather.WeatherAtAllStationsButton;
 import com.wroclawhelperf.ui.views.Dashboard;
 import com.wroclawhelperf.ui.views.StationsView;
 

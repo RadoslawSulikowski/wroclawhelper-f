@@ -1,6 +1,5 @@
 package com.wroclawhelperf.ui.views;
 
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.Label;
@@ -20,8 +19,7 @@ import lombok.Getter;
 public class UserPanelView extends VerticalLayout {
 
     private final Dashboard dashboard;
-    private final UserService userService = UserService.getInstance();
-    private final User user = userService.getUserByUsername(MainView.getLoggedUser());
+    private User user = UserService.getInstance().getUserByUsername(MainView.getLoggedUser());
 
     private HorizontalLayout usernameRow = new HorizontalLayout();
     private HorizontalLayout firstNameRow = new HorizontalLayout();
@@ -65,11 +63,11 @@ public class UserPanelView extends VerticalLayout {
         lastNameField.setValue(user.getLastName());
         lastNameRow.add(new Label("LAST NAME:"), lastNameField, new SaveLastNameButton(this));
 
-        firstNameField.setValue(user.getFirstName());
-        passwordRow.add(new Label("PASSWORD:"), passwordField, confirmPasswordField, new SavePasswordButton(this));
+        passwordRow.add(new Label("PASSWORD:"), passwordField,
+                new Label("CONFIRM PASSWORD:"), confirmPasswordField, new SavePasswordButton(this));
 
         emailField.setValue(user.getEmail());
-        emailRow.add(new Label("EMAIL:"), emailField, new SavePasswordButton(this));
+        emailRow.add(new Label("EMAIL:"), emailField, new SaveEmailButton(this));
 
         latitudeField.setValue(user.getLocation().getLatitude());
         longitudeField.setValue(user.getLocation().getLongitude());
@@ -85,5 +83,9 @@ public class UserPanelView extends VerticalLayout {
 
 
         add(usernameRow, firstNameRow, lastNameRow, passwordRow, emailRow, LocationBlock, schedulerRow, saveAndCancelButtonsRow);
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

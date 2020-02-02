@@ -2,10 +2,10 @@ package com.wroclawhelperf.ui.buttons.main.buttons;
 
 import com.vaadin.flow.component.button.Button;
 import com.wroclawhelperf.ui.buttons.abstrct.templates.MainButtonAbstract;
-import com.wroclawhelperf.ui.buttons.secondary.buttons.bikes.FindNearestBikeStationButton;
 import com.wroclawhelperf.ui.buttons.secondary.buttons.bikes.AllBikeStationsButton;
-import com.wroclawhelperf.ui.views.StationsView;
+import com.wroclawhelperf.ui.buttons.secondary.buttons.bikes.FindNearestBikeStationButton;
 import com.wroclawhelperf.ui.views.Dashboard;
+import com.wroclawhelperf.ui.views.StationsView;
 
 public final class BikesButton extends MainButtonAbstract {
 

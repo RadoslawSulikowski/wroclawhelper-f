@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.Map;
 
 import static java.util.Optional.ofNullable;
 
@@ -25,13 +26,13 @@ public class UserService {
     private static UserService userServiceInstance = null;
 
     public static UserService getInstance() {
-        if(userServiceInstance == null) {
+        if (userServiceInstance == null) {
             userServiceInstance = new UserService();
         }
         return userServiceInstance;
     }
 
-    private UserService(){
+    private UserService() {
 
     }
 
@@ -61,5 +62,15 @@ public class UserService {
         return responseEntity.getBody();
     }
 
+    public User updateUserProperty(Map<String, String> map) {
+
+        RequestFactory requestFactory = new RequestFactory();
+        RestTemplate restTemplate = requestFactory.getRestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        ResponseEntity<User> responseEntity = restTemplate.exchange(sourceRoot + "/users", HttpMethod.PATCH,
+                new HttpEntity<>(map, headers), User.class);
+        return responseEntity.getBody();
+    }
 
 }

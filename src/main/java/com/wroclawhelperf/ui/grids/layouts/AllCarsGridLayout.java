@@ -9,7 +9,7 @@ import com.wroclawhelperf.domain.VozillaCar;
 import com.wroclawhelperf.service.CarService;
 
 public class AllCarsGridLayout extends VerticalLayout {
-    
+
     private final CarService service = CarService.getInstance();
 
     public AllCarsGridLayout() {

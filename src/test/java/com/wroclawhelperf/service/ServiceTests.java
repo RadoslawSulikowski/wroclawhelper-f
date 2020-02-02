@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootTest
 class ServiceTests {
 //
@@ -24,20 +27,28 @@ class ServiceTests {
 
     @Autowired
     private UserService userService;
-
-    @Test
-    void testUpdateUser() {
-        User user = new User(
-                "c",
-                "c",
-                "a",
-                "c",
-                "c",
-                new GPSLocation(52,17),
-                false
-        );
-        System.out.println(userService.updateUser(user));
-    }
+//
+//    @Test
+//    void testUpdateUserProperty() {
+//        Map<String, String> map = new HashMap<>();
+//        map.put("username", "b");
+//        map.put("email", "email");
+//        System.out.println(userService.updateUserProperty(map));
+//    }
+//
+//    @Test
+//    void testUpdateUser() {
+//        User user = new User(
+//                "c",
+//                "c",
+//                "a",
+//                "c",
+//                "c",
+//                new GPSLocation(52,17),
+//                false
+//        );
+//        System.out.println(userService.updateUser(user));
+//    }
 //    @Test
 //    void testGetUserByUsername() {
 //        System.out.println(userService.getUserByUsername("a"));

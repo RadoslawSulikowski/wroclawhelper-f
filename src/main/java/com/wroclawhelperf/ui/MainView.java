@@ -24,7 +24,7 @@ public class MainView extends HorizontalLayout {
     private Button loginButton = new LoginButton(this);
     private Label registerLabel = new Label();
     private Button registerButton = new Button();
-    
+
     public MainView() {
         setContent();
     }

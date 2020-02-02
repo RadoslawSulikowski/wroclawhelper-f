@@ -5,15 +5,16 @@ import com.wroclawhelperf.ui.buttons.abstrct.templates.SecondaryButtonAbstract;
 import com.wroclawhelperf.ui.views.UserPanelView;
 
 public class ResetAllChangesButton extends SecondaryButtonAbstract {
+
     private final UserPanelView userPanelView;
 
     public ResetAllChangesButton(UserPanelView view) {
         super();
         userPanelView = view;
 
-        setText("RESET ALL FIELDS");
-        User user = userPanelView.getUser();
+        setText("RESET UNSAVED CHANGES");
         addClickListener(e -> {
+            User user = userPanelView.getUser();
             userPanelView.getFirstNameField().setValue(user.getFirstName());
             userPanelView.getLastNameField().setValue(user.getLastName());
             userPanelView.getPasswordField().setValue("");
@@ -23,7 +24,7 @@ public class ResetAllChangesButton extends SecondaryButtonAbstract {
             userPanelView.getLongitudeField().setValue(user.getLocation().getLongitude());
             userPanelView.getSchedulerCheckbox().setValue(user.isSchedulerOn());
 
-            userPanelView.getDialogLabel().setText("All changes cleared");
+            userPanelView.getDialogLabel().setText("All unsaved changes cleared");
             userPanelView.getDialog().open();
         });
     }
