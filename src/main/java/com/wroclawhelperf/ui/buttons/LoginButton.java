@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.client.ResourceAccessException;
 
-import java.io.IOException;
 
 public class LoginButton extends Button {
 
@@ -22,14 +21,10 @@ public class LoginButton extends Button {
     private MainView mainView;
     private Label dialogLabel = new Label();
     private Dialog dialog = new Dialog(dialogLabel);
-    private TextField usernameField = mainView.getUsername();
-    private PasswordField passwordField = mainView.getPassword();
-    private String username = usernameField.getValue();
-    private String password = Encryptor.encrypt(passwordField.getValue());
+
 
     public LoginButton(MainView view) {
         mainView = view;
-
         setText("LOGIN!");
 
         dialog.setWidth("300px");
@@ -37,8 +32,10 @@ public class LoginButton extends Button {
 
         addClickListener(e -> {
             try {
-                username = usernameField.getValue();
-                password = Encryptor.encrypt(passwordField.getValue());
+                TextField usernameField = mainView.getUsername();
+                PasswordField passwordField = mainView.getPassword();
+                String username = usernameField.getValue();
+                String password = Encryptor.encrypt(passwordField.getValue());
                 if (UserService.getInstance().verifyUser(new UserToVerify(username, password))) {
                     mainView.setLoggedUser(username);
                     Dashboard dashboard = new Dashboard(mainView);
@@ -57,7 +54,6 @@ public class LoginButton extends Button {
                 LOGGER.error("Can not connect with api");
                 dialogLabel.setText("Can not connect with api");
                 dialog.open();
-
             }
         });
     }
