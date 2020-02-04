@@ -20,6 +20,7 @@ public final class CarsButton extends MainButtonAbstract {
         Button findNearestCarButton = new FindNearestCarButton(stationsView);
         addClickListener(e -> {
             dashboard.reset();
+            stationsView.reset();
             dashboard.getHeading().setText("VOZILLA CARS PANEL");
             dashboard.getContainer().add(stationsView);
             dashboard.getSecondaryButtonPanel().add(getAllCarsButton, findNearestCarButton);

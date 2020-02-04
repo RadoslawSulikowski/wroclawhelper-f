@@ -10,8 +10,6 @@ import com.wroclawhelperf.service.BikeService;
 
 public class AllBikeStationsGridLayout extends VerticalLayout {
 
-    private final BikeService service = BikeService.getInstance();
-
     public AllBikeStationsGridLayout() {
 
         Label stationName = new Label();
@@ -23,7 +21,7 @@ public class AllBikeStationsGridLayout extends VerticalLayout {
         Grid<BikeStation> bikeStationGrid = new Grid<>(BikeStation.class);
         bikeStationGrid.setColumns("name", "bikes", "bookedBikes");
         bikeStationGrid.getColumns().forEach(c -> c.setAutoWidth(true));
-        bikeStationGrid.setItems(service.getAllBikeStations());
+        bikeStationGrid.setItems(BikeService.getInstance().getAllBikeStations());
         bikeStationGrid.addComponentColumn(bikeStation -> {
             Button button = new Button("DETAILS");
             button.addThemeVariants(ButtonVariant.LUMO_TERTIARY_INLINE);

@@ -3,11 +3,10 @@ package com.wroclawhelperf.ui.forms;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.notification.Notification;
 import com.wroclawhelperf.domain.GPSLocation;
+import com.wroclawhelperf.domain.User;
 import com.wroclawhelperf.domain.VozillaCar;
 import com.wroclawhelperf.service.CarService;
 import com.wroclawhelperf.ui.views.StationsView;
-
-import static java.lang.Double.parseDouble;
 
 public class LocationForCarForm extends LocationFormAbstract {
 
@@ -22,8 +21,8 @@ public class LocationForCarForm extends LocationFormAbstract {
     @Override
     protected void find() {
         try {
-            double latitude = parseDouble(latitudeTF.getValue());
-            double longitude = parseDouble(longitudeTF.getValue());
+            double latitude = latitudeTF.getValue();
+            double longitude = longitudeTF.getValue();
             GPSLocation location = new GPSLocation(latitude, longitude);
             Grid<VozillaCar> resultCar = new Grid<>(VozillaCar.class);
             resultCar.setColumns("platesNumber", "type", "name", "color", "status", "batteryLevelPct", "rangeKm",
@@ -36,5 +35,12 @@ public class LocationForCarForm extends LocationFormAbstract {
             LOGGER.error(e.getMessage(), e);
             Notification.show("Check data format and completeness");
         }
+    }
+
+    @Override
+    protected void fill() {
+        User user = carView.getDashboard().getUser();
+        latitudeTF.setValue(user.getLocation().getLatitude());
+        longitudeTF.setValue(user.getLocation().getLongitude());
     }
 }

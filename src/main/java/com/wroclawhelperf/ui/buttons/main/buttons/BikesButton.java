@@ -20,6 +20,7 @@ public final class BikesButton extends MainButtonAbstract {
         Button findNearestStationButton = new FindNearestBikeStationButton(stationsView);
         addClickListener(e -> {
             dashboard.reset();
+            stationsView.reset();
             dashboard.getHeading().setText("BIKE STATION PANEL");
             dashboard.getSecondaryButtonPanel().add(getAllBikeStationsButton, findNearestStationButton);
             dashboard.getContainer().add(stationsView);

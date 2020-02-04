@@ -17,8 +17,6 @@ public class ResetAllChangesButton extends SecondaryButtonAbstract {
             User user = userPanelView.getUser();
             userPanelView.getFirstNameField().setValue(user.getFirstName());
             userPanelView.getLastNameField().setValue(user.getLastName());
-            userPanelView.getPasswordField().setValue("");
-            userPanelView.getConfirmPasswordField().setValue("");
             userPanelView.getEmailField().setValue(user.getEmail());
             userPanelView.getLatitudeField().setValue(user.getLocation().getLatitude());
             userPanelView.getLongitudeField().setValue(user.getLocation().getLongitude());

@@ -31,6 +31,8 @@ public class SavePasswordButton extends SecondaryButtonAbstract {
                 map.put("username", MainView.getLoggedUser());
                 map.put("password", Encryptor.encrypt(userPanelView.getPasswordField().getValue()));
                 userPanelView.setUser(UserService.getInstance().updateUserProperty(map));
+                userPanelView.getPasswordField().setValue("");
+                userPanelView.getConfirmPasswordField().setValue("");
                 userPanelView.getDialogLabel().setText("New password saved!");
                 userPanelView.getDialog().open();
             }

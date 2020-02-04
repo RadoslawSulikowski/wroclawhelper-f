@@ -23,6 +23,7 @@ public final class WeatherButton extends MainButtonAbstract {
 
         addClickListener(e -> {
             dashboard.reset();
+            weatherView.reset();
             dashboard.getHeading().setText("WEATHER");
             dashboard.getSecondaryButtonPanel()
                     .add(allWeatherStationsButton, allStationWeatherButton, findNearestWeatherStationButton);

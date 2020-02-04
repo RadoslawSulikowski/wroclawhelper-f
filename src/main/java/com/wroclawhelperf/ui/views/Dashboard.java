@@ -4,6 +4,8 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.wroclawhelperf.domain.User;
+import com.wroclawhelperf.service.UserService;
 import com.wroclawhelperf.ui.MainView;
 import com.wroclawhelperf.ui.buttons.main.buttons.*;
 import lombok.Getter;
@@ -12,7 +14,7 @@ import lombok.Getter;
 public class Dashboard extends HorizontalLayout {
 
     private final MainView mainView;
-
+    private User user = UserService.getInstance().getUserByUsername(MainView.getLoggedUser());
     private VerticalLayout leftButtonPanel = new VerticalLayout();
     private VerticalLayout container = new VerticalLayout();
 
@@ -36,7 +38,7 @@ public class Dashboard extends HorizontalLayout {
         secondaryButtonPanel.setHeight("10%");
         leftButtonPanel.setWidth("10%");
         container.setWidth("90%");
-        loggedAs.setText("Logged as " + mainView.getLoggedUser());
+        loggedAs.setText("Logged as " + MainView.getLoggedUser());
 
         leftButtonPanel.add(loggedAs, logOutButton, userPanelButton, bikesButton, weatherButton, carsButton);
         container.add(heading, secondaryButtonPanel);
@@ -49,5 +51,9 @@ public class Dashboard extends HorizontalLayout {
         secondaryButtonPanel.removeAll();
         container.removeAll();
         container.add(heading, secondaryButtonPanel);
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
