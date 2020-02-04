@@ -8,9 +8,13 @@ import com.wroclawhelperf.domain.UserToRegister;
 import com.wroclawhelperf.encryptor.Encryptor;
 import com.wroclawhelperf.service.UserService;
 import com.wroclawhelperf.ui.views.RegistrationPanelView;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.client.ResourceAccessException;
 
 public class RegisterButton extends Button {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegisterButton.class);
     private final RegistrationPanelView view;
     private final UserService userService = UserService.getInstance();
 
@@ -24,41 +28,47 @@ public class RegisterButton extends Button {
         dialog.setHeight("100px");
 
         addClickListener(e -> {
-            if (isEmptyField()) {
-                dialogLabel.setText("All fields must be completed!");
-                dialog.open();
-            } else if (!Encryptor.encrypt(view.getPasswordField().getValue())
-                    .equals(Encryptor.encrypt(view.getConfirmPasswordField().getValue()))) {
-                dialogLabel.setText("Password and it's confirmation are different!");
-                dialog.open();
-            } else if (!userService.isUsernameUnique(view.getUsernameField().getValue())) {
-                dialogLabel.setText("Username " + view.getUsernameField().getValue() + " already exists!");
-                dialog.open();
-            } else if (view.getEmailField().isInvalid()) {
-                dialogLabel.setText("Email address is invalid!");
-                dialog.open();
-            } else {
-                UserToRegister user = new UserToRegister(
-                        view.getFirstNameField().getValue(),
-                        view.getLastNameField().getValue(),
-                        view.getUsernameField().getValue(),
-                        Encryptor.encrypt(view.getPasswordField().getValue()),
-                        view.getEmailField().getValue(),
-                        new GPSLocation(
-                                view.getLatitudeField().getValue(),
-                                view.getLongitudeField().getValue()),
-                        view.getSchedulerCheckbox().getValue()
-                );
-
-                if (userService.registerUser(user)) {
-                    clearAllFields();
-                    dialogLabel.setText("Registration complete! Now you can login and enjoy using wroclawhelper!");
+            try {
+                if (isEmptyField()) {
+                    dialogLabel.setText("All fields must be completed!");
+                    dialog.open();
+                } else if (!Encryptor.encrypt(view.getPasswordField().getValue())
+                        .equals(Encryptor.encrypt(view.getConfirmPasswordField().getValue()))) {
+                    dialogLabel.setText("Password and it's confirmation are different!");
+                    dialog.open();
+                } else if (view.getEmailField().isInvalid()) {
+                    dialogLabel.setText("Email address is invalid!");
+                    dialog.open();
+                } else if (!userService.isUsernameUnique(view.getUsernameField().getValue())) {
+                    dialogLabel.setText("Username " + view.getUsernameField().getValue() + " already exists!");
                     dialog.open();
                 } else {
-                    dialogLabel.setText("Something went wrong and your profile isn't created! We're really sorry. " +
-                            "Pleas, dont giv up, and try again latter");
-                    dialog.open();
+                    UserToRegister user = new UserToRegister(
+                            view.getFirstNameField().getValue(),
+                            view.getLastNameField().getValue(),
+                            view.getUsernameField().getValue(),
+                            Encryptor.encrypt(view.getPasswordField().getValue()),
+                            view.getEmailField().getValue(),
+                            new GPSLocation(
+                                    view.getLatitudeField().getValue(),
+                                    view.getLongitudeField().getValue()),
+                            view.getSchedulerCheckbox().getValue()
+                    );
+
+                    if (userService.registerUser(user)) {
+                        clearAllFields();
+                        dialogLabel.setText("Registration complete! Now you can login and enjoy using wroclawhelper!");
+                        dialog.open();
+                    } else {
+                        dialogLabel.setText("Something went wrong and your profile isn't created! We're really sorry. " +
+                                "Pleas, dont giv up, and try again latter");
+                        dialog.open();
+                    }
                 }
+            } catch (ResourceAccessException e1) {
+                LOGGER.error("Can not connect with api");
+                dialogLabel.setText("Can not connect with api");
+                dialog.open();
             }
         });
     }
