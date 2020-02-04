@@ -8,6 +8,7 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.wroclawhelperf.ui.buttons.LoginButton;
+import com.wroclawhelperf.ui.buttons.RegistrationPanelButton;
 import lombok.Getter;
 
 @Getter
@@ -23,7 +24,7 @@ public class MainView extends HorizontalLayout {
     private PasswordField password = new PasswordField("password", "password");
     private Button loginButton = new LoginButton(this);
     private Label registerLabel = new Label();
-    private Button registerButton = new Button();
+    private Button registerButton = new RegistrationPanelButton(this);
 
     public MainView() {
         setContent();
@@ -32,7 +33,7 @@ public class MainView extends HorizontalLayout {
     private void setContent() {
         loginLabel.setText("Pleas log in:");
         registerLabel.setText("Or register");
-        leftPanel.setWidth("10%");
+        leftPanel.setWidth("20%");
         leftPanel.add(loginLabel, username, password, loginButton, registerLabel, registerButton);
         add(leftPanel, container);
     }

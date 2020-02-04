@@ -2,6 +2,7 @@ package com.wroclawhelperf.service;
 
 import com.wroclawhelperf.config.Config;
 import com.wroclawhelperf.domain.User;
+import com.wroclawhelperf.domain.UserToRegister;
 import com.wroclawhelperf.domain.UserToVerify;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,22 @@ public class UserService {
         URI sourceUri = UriComponentsBuilder.fromHttpUrl(sourceRoot + "/users/username/" + username)
                 .build().encode().toUri();
         return restTemplate.getForObject(sourceUri, User.class);
+    }
+
+    public boolean isUsernameUnique(String username) {
+        URI sourceUri = UriComponentsBuilder.fromHttpUrl(sourceRoot + "/users/verify/" + username)
+                .build().encode().toUri();
+        return (ofNullable(restTemplate.getForObject(sourceUri, String.class)).orElse("false")).equals("true");
+    }
+
+    public boolean registerUser(UserToRegister user) {
+        RequestFactory requestFactory = new RequestFactory();
+        RestTemplate restTemplate = requestFactory.getRestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(sourceRoot + "/users", HttpMethod.POST,
+                new HttpEntity<>(user, headers), String.class);
+        return (responseEntity.getStatusCodeValue()) == 201;
     }
 
     public boolean verifyUser(UserToVerify user) {
