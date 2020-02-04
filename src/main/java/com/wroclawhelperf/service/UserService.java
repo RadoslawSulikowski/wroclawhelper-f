@@ -44,13 +44,19 @@ public class UserService {
     }
 
     public boolean isUsernameUnique(String username) {
-        //do okodowania i do zrobienia endpoint w backendzie
-        return false;
+        URI sourceUri = UriComponentsBuilder.fromHttpUrl(sourceRoot + "/users/verify/" + username)
+                .build().encode().toUri();
+        return (ofNullable(restTemplate.getForObject(sourceUri, String.class)).orElse("false")).equals("true");
     }
 
     public boolean registerUser(UserToRegister user) {
-        //do okodowania i do podłączenia do endpointu: "/users" POST
-        return false;
+        RequestFactory requestFactory = new RequestFactory();
+        RestTemplate restTemplate = requestFactory.getRestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        ResponseEntity<String> responseEntity = restTemplate.exchange(sourceRoot + "/users", HttpMethod.POST,
+                new HttpEntity<>(user, headers), String.class);
+        return (responseEntity.getStatusCodeValue()) == 201;
     }
 
     public boolean verifyUser(UserToVerify user) {

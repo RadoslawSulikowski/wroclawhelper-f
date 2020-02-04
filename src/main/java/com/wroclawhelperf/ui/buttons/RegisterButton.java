@@ -19,13 +19,14 @@ public class RegisterButton extends Button {
 
     public RegisterButton(RegistrationPanelView registrationPanelView) {
         view = registrationPanelView;
-
+        setText("REGISTER NOW!");
         dialog.setWidth("300px");
         dialog.setHeight("100px");
 
         addClickListener(e -> {
             if (isEmptyField()) {
                 dialogLabel.setText("All fields must be completed!");
+                dialog.open();
             } else if (!Encryptor.encrypt(view.getPasswordField().getValue())
                     .equals(Encryptor.encrypt(view.getConfirmPasswordField().getValue()))) {
                 dialogLabel.setText("Password and it's confirmation are different!");
@@ -43,7 +44,8 @@ public class RegisterButton extends Button {
                         view.getUsernameField().getValue(),
                         Encryptor.encrypt(view.getPasswordField().getValue()),
                         view.getEmailField().getValue(),
-                        new GPSLocation(view.getLatitudeField().getValue(),
+                        new GPSLocation(
+                                view.getLatitudeField().getValue(),
                                 view.getLongitudeField().getValue()),
                         view.getSchedulerCheckbox().getValue()
                 );
