@@ -2,6 +2,7 @@ package com.wroclawhelperf.service;
 
 import com.wroclawhelperf.config.Config;
 import com.wroclawhelperf.domain.User;
+import com.wroclawhelperf.domain.UserToRegister;
 import com.wroclawhelperf.domain.UserToVerify;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,6 +41,16 @@ public class UserService {
         URI sourceUri = UriComponentsBuilder.fromHttpUrl(sourceRoot + "/users/username/" + username)
                 .build().encode().toUri();
         return restTemplate.getForObject(sourceUri, User.class);
+    }
+
+    public boolean isUsernameUnique(String username) {
+        //do okodowania i do zrobienia endpoint w backendzie
+        return false;
+    }
+
+    public boolean registerUser(UserToRegister user) {
+        //do okodowania i do podłączenia do endpointu: "/users" POST
+        return false;
     }
 
     public boolean verifyUser(UserToVerify user) {

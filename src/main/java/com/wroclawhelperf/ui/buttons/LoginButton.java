@@ -14,7 +14,6 @@ import com.wroclawhelperf.ui.views.Dashboard;
 public class LoginButton extends Button {
 
     private MainView mainView;
-    private final UserService userService = UserService.getInstance();
 
     public LoginButton(MainView view) {
         mainView = view;
@@ -31,7 +30,7 @@ public class LoginButton extends Button {
             dialog.setWidth("300px");
             dialog.setHeight("100px");
 
-            if (userService.verifyUser(new UserToVerify(username, password))) {
+            if (UserService.getInstance().verifyUser(new UserToVerify(username, password))) {
                 mainView.setLoggedUser(username);
                 Dashboard dashboard = new Dashboard(mainView);
                 usernameField.setValue("");
